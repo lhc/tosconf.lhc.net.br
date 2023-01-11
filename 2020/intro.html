@@ -1,0 +1,176 @@
+
+<!DOCTYPE HTML>
+<!------------------------------------------------------------------------------
+Copyright (c) 2011 Antoine Santo Aka NoNameNo
+
+This File is part of the CODEF project.
+
+More info : http://codef.santo.fr
+Demo gallery http://www.wab.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+------------------------------------------------------------------------------>
+<html> 
+<head> 
+ 
+<script src="codef_core.js"></script> 
+<script src="codef_fx.js"></script>
+<script src="codef_scrolltext.js"></script>
+<script> 
+
+var font = new image('font1.png');
+var tosconf = new image('tosconf.png');
+var tcanvas;
+var canvas;
+var scroll;
+var fx;
+
+var tosconfGreen='#4e9a06';
+function init(){
+	tcanvas = new canvas(536, 124);
+	tosconf.draw(tcanvas, 0, 0);
+
+	canvas = new canvas(640, 480, "main");
+	canvas.canvas.style.position = "absolute";
+	canvas.canvas.style.width = window.innerWidth + "px";
+	canvas.canvas.style.height = window.innerHeight + "px";
+	canvas.canvas.style.display = "block";
+
+	fx = new FX(tcanvas, canvas, [
+		{ value: 0, amp: 5, inc: 0.05, offset: -0.05 },
+		{ value: 0, amp: 5, inc: 0.01, offset: 0.08 }
+	]);	
+
+	font.initTile(32, 30, 32);
+	scroll = new scrolltext_horizontal();
+	scroll.scrtxt = " ULTIMO SABADO DE MAIO   CHAMADA DE TRABALHOS EM BREVE ";
+	scroll.init(canvas, font, 1);
+
+	drawBox1();
+}
+
+var m = 52;
+function drawBox1() {
+	canvas.fill('#000000');
+	canvas.line(52, 182, m, 182, 4, tosconfGreen);
+	m += 6;
+	if (m >= 587) {
+		m = 0;
+		requestAnimFrame(drawBox2);
+	} else {
+		requestAnimFrame(drawBox1);
+	}
+}
+
+function drawBox2() {
+	canvas.fill('#000000');
+	canvas.line(52, 182, 640 - 52, 182, 4, tosconfGreen);
+
+	canvas.line(587, 182, 587, 182 + m, 4, tosconfGreen);
+	m += 6;
+	if (m >= 121) {
+		m = 587;
+		requestAnimFrame(drawBox3);
+	} else {
+		requestAnimFrame(drawBox2);
+	}
+}
+
+function drawBox3() {
+	canvas.fill('#000000');
+	canvas.line(52, 182, 640 - 52, 182, 4, tosconfGreen);
+	canvas.line(587, 182, 587, 303, 4, tosconfGreen);
+
+	canvas.line(587, 303, m, 303, 4, tosconfGreen);
+
+	m -= 6;
+	if (m <= 52) {
+		m = 0;
+		requestAnimFrame(drawBox4);
+	} else {
+		requestAnimFrame(drawBox3);
+	}
+}
+
+function drawBox4() {
+	canvas.fill('#000000');
+	canvas.line(52, 182, 640 - 52, 182, 4, tosconfGreen);
+	canvas.line(587, 182, 587, 303, 4, tosconfGreen);
+	canvas.line(587, 303, 52, 303, 4, tosconfGreen);
+
+	canvas.line(54, 303, 54, 303 - m, 4, tosconfGreen);
+	m += 6;
+	if (m >= 121)
+		requestAnimFrame(blankScreen);
+	else
+		requestAnimFrame(drawBox4);
+}
+
+var blankFrames = 4;
+var blankFrameColors = ['#fff', '#ddd', '#bbb', '#999'];
+function blankScreen() {
+	blankFrames--;
+	canvas.fill(blankFrameColors[blankFrames % 4]);
+	if (blankFrames >= 0)
+		requestAnimFrame(blankScreen);
+	else
+		requestAnimFrame(showTosconfLogo);
+}
+
+var roll1x = -592;
+var roll1y = 0;
+var roll2x = -592+150;
+var roll2y = -608+150;
+var myb1 = new image('b1.png');
+var myb2 = new image('b2.png');
+
+function showTosconfLogo() {
+	canvas.fill(tosconfGreen);
+
+        myb1.draw(canvas,roll1x,roll1y);
+        myb2.draw(canvas,roll2x,roll2y);
+        roll1x+=2;
+        roll1y-=2;
+        roll2x+=2;
+        roll2y+=2;
+
+        if(roll1x>-334){
+           roll1x=-592;
+           roll1y=0;
+           roll2x = -592+150;
+           roll2y = -608+150;
+        }
+
+	fx.siny(52, 180);
+	scroll.draw(480 - 128);
+
+	requestAnimFrame(showTosconfLogo);
+}
+
+
+ 
+</script> 
+</head> 
+<!-- 4e9a06 -->
+<body onLoad="init();" bgcolor="#000" style="border: 0; padding: 0; margin:
+0;">
+<div id="main"></div>
+</body> 
+</html>
+

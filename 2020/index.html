@@ -1,0 +1,428 @@
+<html>
+<head>
+	<title>Tosconf[3]</title>
+	<style>
+	body {
+		background: #0C0C0C;
+		font-family: inconsolata, courier new;
+		color: #4e9a06;
+	}
+	#logo-enclosure {
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 172px;
+		background: url('degrad.png') repeat-x;
+		background-attachment: fixed;
+		z-index: 1000;
+	}
+	.anchor {
+		display: block;
+		height: 172px;
+		margin-top: -172px;
+		visibility: hidden;
+	}
+	#logo {
+		margin-top: 24px;
+		text-align: center;
+	}
+	#data {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+		text-align: right;
+		font-size: 150%;
+	}
+	#menu {
+		padding: 12px;
+		margin-top: 184px;
+		margin-bottom: 48px;
+		text-align: center;
+		font-size: 150%;
+	}
+	#menu a {
+		color: #490;
+		text-decoration: none;
+		border-bottom: 2px dashed #490;
+	}
+	.bloco {
+		margin-bottom: 48px;
+		border: 1px solid green;
+		padding: 24px;
+		background: #081A08;
+	}
+	@media screen and (min-width: 1200px) {
+		.bloco {
+			margin-left: 25%;
+			margin-right: 25%;
+		}
+	}
+	@media screen and (min-width: 1100px) and (max-width: 1200px) {
+		.bloco {
+			margin-left: 15%;
+			margin-right: 15%;
+		}
+	}
+	@media screen and (min-width: 900px) and (max-width: 1100px) {
+		.bloco {
+			margin-left: 5%;
+			margin-right: 5%;
+		}
+	}
+	.bloco a {
+		color: #490;
+		text-decoration: none;
+		border-bottom: 1px dotted #490;
+	}
+	.patrocinadores a {
+		border-bottom: none;
+	}
+	.bloco h1, p {
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+	.patrocinadores tr {
+		text-align: center;
+	}
+	botao {
+		position:relative;
+		display: inline-block;
+		padding: 4px 10px 4px;
+		margin:12px;
+		font-size: 13px;
+		line-height: 18px;
+		text-align: center;
+		border: 1px solid #ccc;
+		border-bottom-color: #bbb;
+		border-radius: 4px;
+		-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, -255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+		-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, -0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+		cursor: pointer;
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+		color: white;
+		background-color: #5bb75b;
+		background-image: -moz-linear-gradient(top, #62c462, #51a351);
+		background-image: -ms-linear-gradient(top, #62c462, #51a351);
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+		background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+		background-image: -o-linear-gradient(top, #62c462, #51a351);
+		background-image: linear-gradient(top, #62c462, #51a351);
+		background-repeat: repeat-x;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#62c462', endColorstr='#51a351', GradientType=0);
+		border-color: #51a351 #51a351 #387038;
+		border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+		filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	}
+	.palestrante {
+		float: right;
+	}
+	botao:hover {
+		background-color: #51a351;
+		text-decoration: none;
+		background-position: 0 -15px;
+		-webkit-transition: background-position 0.1s linear;
+		-moz-transition: background-position 0.1s linear;
+		-ms-transition: background-position 0.1s linear;
+		-o-transition: background-position 0.1s linear;
+		transition: background-position 0.1s linear;
+	}
+	botao > popup{
+		-moz-transition: all .2s ease-in-out; 
+		-webkit-transition: all .2s ease-in-out; 
+		-o-transition: all .2s ease-in-out; 
+		-ms-transition: all .2s ease-in-out; 
+		transition: all .2s ease-in-out; 
+		-moz-transform: scale(0);
+		-webkit-transform: scale(0);
+		-o-transform: scale(0);
+		-ms-transform: scale(0);
+		transform: scale(0);
+		position:absolute;
+		background: #0c0c0c;
+		color: #9a9a9a;
+		border-radius: 5px;
+		padding:10px;
+		width: 400px;
+		bottom:120%;
+		left:0;
+		z-index: 2000;
+		border: 1px solid #4e9a06;
+		box-shadow: 0 0 42px black;
+	}
+
+	botao > popup:before,popup:after {
+		content: ".";
+		position: absolute;
+		color:transparent;
+		top:100%;
+		width: 0;
+		height: 0;
+		left:4px;
+		border-left: 11px solid transparent;
+		border-right: 11px solid transparent;
+		border-top: 11px solid #4e9a06;
+	}
+
+	botao > popup:after {
+		left:5px;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-top: 10px solid #0c0c0c;
+	}
+	botao:hover > popup{
+		-moz-transform: scale(1.0);
+		-webkit-transform: scale(1.0);
+		-o-transform: scale(1.0);
+		-ms-transform: scale(1.0);
+		transform: scale(1.0);
+	}
+	.agenda td {
+		padding: 12px;
+		background: #000;
+	}
+	.agenda th {
+		background: #000;
+		color: #384A38;
+	}
+	</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<div id="logo-enclosure">
+	<div id="logo">
+		<img src="tosconf.png">
+	</div>
+	<div id="data">
+	05 de Abril de 2020<br/>
+	09:00<br/>
+	Campinas - SP
+	</div>
+</div>
+
+<div id="menu">
+	<a href="#evento">Introdução</a> &middot;
+	<a href="#propor-atividade">Propor Atividade</a> &middot;
+	<a href="#edicoes-anteriores">Edições Anteriores</a> &middot;
+	<a href="#local">Local</a> &middot;
+	<a href="#contato">Contato</a>
+</div>
+
+<span class="anchor" id="evento"></span>
+<div class="bloco">
+<h1>O Evento</h1>
+<p>A Tosconf é uma desconferência anual organizada pelo Laboratório Hacker de
+Campinas (LHC).  Em sua quarta edição, a conferência contou em anos
+anteriores com a presença de pessoas dos mais variados meios e vivências, de
+computação à artesanato, de segurança da informação à marcenaria,
+profissionais e curiosos, e, às vezes, até mesmo figuras míticas da
+computação. </p>
+<center>
+	<p>
+		<botao><img src="tosconf-4.th.jpg"></botao>
+		<botao><img src="tosconf-5.th.jpg"></botao>
+	</p>
+</center>
+<p>A chamada de trabalhos começa dia 2020-01-10 e estende-se até 2020-03-25.
+Dependendo das submissões, teremos espaços separados para palestras,
+oficinas, e outras atividades paralelas.  A Tosconf é uma conferência
+eclética: não há qualquer restrição do tipo de coisa que pode ser abordada
+nas atividades, mas as áreas seguintes são de interesse, principalmente a
+última, "Etc":</p>
+<center>
+	<p>
+		<botao><img src="tosconf-6.th.jpg"></botao>
+		<botao><img src="tosconf-7.th.jpg"></botao>
+	</p>
+</center>
+<p><ul>
+<li>Retrocomputação, cultura de vídeo game e arte</li>
+<li>Criptografia e criptoanálise</li>
+<li>Privacidade</li>
+<li>Jogos de Tabuleiro</li>
+<li>Marcenaria</li>
+<li>Educação e novas maneiras de ensinar e aprender</li>
+<li>Lockpicking esportivo</li>
+<li>Culinária, fabricação de bebidas</li>
+<li>Exploração espacial amadora</li>
+<li>Fabricação: tecnologias, ferramentas, distribuição</li>
+<li>Eletrônica, robótica, automação</li>
+<li>Mecânica</li>
+<li>Neutralidade de rede e dispositivos</li>
+<li>Técnicas inusitadas de exploração de falhas</li>
+<li>Linguagens de programação: estado da arte, pesquisa</li>
+<li>Transparência e participação política/governamental</li>
+<li>Engenharia reversa, análise forense</li>
+<li>Tecnologia e leis</li>
+<li>Radioamadorismo, segurança de telecomunicações, SDR</li>
+<li>Internet das Coisas (IoT)</li>
+<li>Qualquer combinação das sugestões de tópicos anteriores</li>
+<li>Etc.</li>
+</ul></p>
+
+<center>
+	<p>
+		<botao><img src="tosconf-2.th.jpg"><popup><img src="tosconf-2.jpg"><small>&copy; Bruno Dilly</small></popup></botao>
+		<botao><img src="tosconf-1.th.jpg"><popup><img src="tosconf-1.jpg"><small>&copy; Bruno Dilly</small></popup></botao>
+		<botao><img src="tosconf-3.th.jpg"><popup><img src="tosconf-3.jpg"><small>&copy; Bruno Dilly</small></popup></botao>
+	</p>
+</center>
+</div>
+
+<span class="anchor" id="propor-atividade"></span>
+<div class="bloco">
+<h1>Propor Atividade</h1>
+
+<h2>Como submeter uma proposta de palestra ou oficina</h2>
+
+<p>Favor submeter sua proposta por email em texto puro para <a href="mailto:tosconf@lhc.net.br">tosconf@lhc.net.br</a>
+ou através <a href="https://docs.google.com/forms/d/e/1FAIpQLSffvCNdwpNj-cN0LsF1Ot1dL5yPLiAsEobQs6_wHtijMMXBRw/viewform">deste formulário</a>,
+com as seguintes informações:</p>
+
+<p><ul>
+<li>Um parágrafo curto (512 caracteres) com sua biografia</li>
+<li>Endereço para blog/página pessoal</li>
+<li>Tamanho da camiseta</li>
+<li>Em caso de palestra, concorda em tê-la gravada em vídeo?  Sim/Não</li>
+<li>Tem experiência em palestras/ministrar oficina?  Sim (links para slides/vídeos serão apreciados)/Não</li>
+<li>É uma palestra inédita?  Sim/Não</li>
+</ul></p>
+
+<p>Favor não mandar os slides junto com a proposta. Pediremos o arquivo assim
+que a atividade for escolhida.  O arquivo estará disponível para download no
+wiki do LHC.</p>
+
+<p>O mesmo endereço de email pode ser usado para contactar a organização do
+evento.</p>
+
+<h2>Descrição</h2>
+
+<p>Considere que, por ser um evento pequeno, a Tosconf não irá receber uma
+quantidade significativa de propostas de atividades.  Portanto, muito
+provavelmente não formaremos um comitê de escolha.  Mas isso pode acontecer
+e, portanto, uma descrição detalhada de sua atividade é importante para
+tentar convencer-nos de que devemos escolher a sua atividade.  Dois
+parágrafos mais ou menos do tamanho deste são mais que suficientes; não
+escreva mais que o necessário.</p>
+
+<h2>Tempo</h2>
+
+<p>Palestras não devem exceder 45 minutos, com espaços de 15 minutos para
+perguntas e respostas.  Em um mundo ideal, as palestras da Tosconf devem
+durar em torno de 45 minutos, incluindo tempo para perguntas e respostas.</p>
+
+<p>Caso os 45 minutos sejas tempo demais, teremos novamente palestras relâmpago,
+com duração de 5 minutos.  Não há necessidade de inscrição prévia, basta
+marcar o nome em uma cartolina no dia do evento.</p>
+
+<p>Oficinas podem exceder os 45 minutos, mas não mais que duas horas.</p>
+
+<h2>Recursos</h2>
+
+<p>Para as palestras, um projetor com entrada VGA, HDMI e vídeo composto (NTSC)
+estará disponível.  Este projetor tem um conector USB que simula um
+mouse/teclado e permite o uso de um controle remoto para avançar/retroceder
+slides.</p>
+
+<p>Para as oficinas, favor explicitar o material e outros recursos necessários. </p>
+
+<h2>Publicação</h2>
+
+<p>Todos os slides usados nas apresentações devem ser licenciados sob uma
+licença da CC-BY-SA da Creative Commons.  Se requerer que os slides sejam
+distribuídos sob as cláusulas de uso não comercial, favor avisar ao enviar
+os slides para a organização.</p>
+
+<p>No caso de oficinas, o material didático também deve ser distribuído em na
+mesma licença.</p>
+
+<p>Caso a apresentadora/tutora prefira, a <a
+href="https://en.wikipedia.org/wiki/Beerware Idioma">Beer-ware License</a>
+também pode ser aplicada em todo o material.  Nesse caso, entendemos que o
+material é extremamente útil e presentearemos o apresentador/tutor com uma
+cerveja gelada (ou outra bebida de sua preferência, de acordo com
+disponibilidade).</p>
+
+<h2>Idioma</h2>
+
+<p>Preferencialmente o Português. Inglês é aceitável se o palestrante não for
+confortável o suficiente com o Português.</p>
+
+<h2>Ajuda com custos</h2>
+
+<p>Nem a Tosconf nem o LHC provê ajuda de custos para palestrantes/tutores.
+Entretanto, palestrantes das palestras de 45 minutos e tutores não pagam o
+ingresso no evento e recebem uma camiseta de agradecimento.</p>
+
+
+
+</div>
+
+<span class="anchor" id="edicoes-anteriores"></span>
+<div class="bloco">
+<h1>Edições Anteriores</h1>
+
+<p>Confira a agenda das edições anteriores seguindo os links abaixo:</p>
+<p><ul>
+<li><a href="/2012">Tosconf[0]</a> (2012)</li>
+<li><a href="/2013">Tosconf[1]</a> (2013)</li>
+<li><a href="/2014">Tosconf[2]</a> (2014)</li>
+</ul>
+</p>
+</div>
+
+
+<span class="anchor" id="local"></span>
+<div class="bloco">
+<h1>Local</h1>
+
+<p style="float: right"><botao>Ver foto da fachada<popup><img src="fachada.jpg"></popup></botao></p>
+<p>
+<a href="https://lhc.net.br">Laboratório Hacker de Campinas</a><br>
+Rua Araribóia, 121<br>
+Ponte Preta<br>
+Campinas / SP<br>
+<br>
+</p>
+
+<p>
+<iframe style="margin: 0" width="100%" height="320" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+src="//maps.google.com.br/maps?ie=UTF8&amp;q=Rua Araribóia, 121 - Campinas - SP&amp;fb=1&amp;gl=br&amp;output=embed"></iframe>
+</p>
+
+
+
+
+</div>
+
+<span class="anchor"></span>
+<div class="bloco patrocinadores">
+<table width="100%">
+<tr>
+	<td><h1>Organização</h1></td>
+	<!--<td><h1>Apoio</h1></td>-->
+</tr>
+<tr>
+	<td><a href="http://lhc.net.br"><img src="lhc.png"></a></td>
+	<!-- <td><a href="http://www.novatec.com.br"><img src="novatec.png"></a></td>-->
+</tr>
+<tr>
+	<td colspan="2"></td>
+</tr>
+<tr>
+	<td colspan="2"><a href="https://www.noisebridge.net/wiki/Passport"><img src="passport.png" border="0"></a></td>
+</tr>
+</table>
+</div>
+
+<span class="anchor" id="contato"></span>
+<div class="bloco">
+<h1>Contato</h1>
+A organização do evento pode ser contatada através do email <a
+href="mailto:tosconf@lhc.net.br">tosconf@lhc.net.br</a>.
+</div>
+
+</body>
+</html>

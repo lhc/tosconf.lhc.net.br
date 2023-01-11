@@ -1,0 +1,518 @@
+<html>
+<head>
+	<title>Tosconf[1]</title>
+	<style>
+	body {
+		background: #0C0C0C;
+		font-family: inconsolata, courier new;
+		color: #4e9a06;
+	}
+	#logo-enclosure {
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 172px;
+		background: url('degrad.png') repeat-x;
+		background-attachment: fixed;
+		z-index: 1000;
+	}
+	.anchor {
+		display: block;
+		height: 172px;
+		margin-top: -172px;
+		visibility: hidden;
+	}
+	#logo {
+		margin-top: 24px;
+		text-align: center;
+	}
+	#data {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+		text-align: right;
+		font-size: 150%;
+	}
+	#menu {
+		padding: 12px;
+		margin-top: 184px;
+		margin-bottom: 48px;
+		text-align: center;
+		font-size: 150%;
+	}
+	#menu a {
+		color: #490;
+		text-decoration: none;
+		border-bottom: 2px dashed #490;
+	}
+	.bloco {
+		margin-bottom: 48px;
+		border: 1px solid green;
+		padding: 24px;
+		background: #081A08;
+	}
+	@media screen and (min-width: 1200px) {
+		.bloco {
+			margin-left: 25%;
+			margin-right: 25%;
+		}
+	}
+	@media screen and (min-width: 1100px) and (max-width: 1200px) {
+		.bloco {
+			margin-left: 15%;
+			margin-right: 15%;
+		}
+	}
+	@media screen and (min-width: 900px) and (max-width: 1100px) {
+		.bloco {
+			margin-left: 5%;
+			margin-right: 5%;
+		}
+	}
+	.bloco a {
+		color: #490;
+		text-decoration: none;
+		border-bottom: 1px dotted #490;
+	}
+	.patrocinadores a {
+		border-bottom: none;
+	}
+	.bloco h1, p {
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+	.patrocinadores tr {
+		text-align: center;
+	}
+	botao {
+		position:relative;
+		display: inline-block;
+		padding: 4px 10px 4px;
+		margin:12px;
+		font-size: 13px;
+		line-height: 18px;
+		text-align: center;
+		border: 1px solid #ccc;
+		border-bottom-color: #bbb;
+		border-radius: 4px;
+		-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, -255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+		-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, -0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+		cursor: pointer;
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+		color: white;
+		background-color: #5bb75b;
+		background-image: -moz-linear-gradient(top, #62c462, #51a351);
+		background-image: -ms-linear-gradient(top, #62c462, #51a351);
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+		background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+		background-image: -o-linear-gradient(top, #62c462, #51a351);
+		background-image: linear-gradient(top, #62c462, #51a351);
+		background-repeat: repeat-x;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#62c462', endColorstr='#51a351', GradientType=0);
+		border-color: #51a351 #51a351 #387038;
+		border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+		filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	}
+	.palestrante {
+		float: right;
+	}
+	botao:hover {
+		background-color: #51a351;
+		text-decoration: none;
+		background-position: 0 -15px;
+		-webkit-transition: background-position 0.1s linear;
+		-moz-transition: background-position 0.1s linear;
+		-ms-transition: background-position 0.1s linear;
+		-o-transition: background-position 0.1s linear;
+		transition: background-position 0.1s linear;
+	}
+	botao > popup{
+		-moz-transition: all .2s ease-in-out; 
+		-webkit-transition: all .2s ease-in-out; 
+		-o-transition: all .2s ease-in-out; 
+		-ms-transition: all .2s ease-in-out; 
+		transition: all .2s ease-in-out; 
+		-moz-transform: scale(0);
+		-webkit-transform: scale(0);
+		-o-transform: scale(0);
+		-ms-transform: scale(0);
+		transform: scale(0);
+		position:absolute;
+		background: #0c0c0c;
+		color: #9a9a9a;
+		border-radius: 5px;
+		padding:10px;
+		width: 400px;
+		bottom:120%;
+		left:0;
+		z-index: 2000;
+		border: 1px solid #4e9a06;
+		box-shadow: 0 0 42px black;
+	}
+
+	botao > popup:before,popup:after {
+		content: ".";
+		position: absolute;
+		color:transparent;
+		top:100%;
+		width: 0;
+		height: 0;
+		left:4px;
+		border-left: 11px solid transparent;
+		border-right: 11px solid transparent;
+		border-top: 11px solid #4e9a06;
+	}
+
+	botao > popup:after {
+		left:5px;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-top: 10px solid #0c0c0c;
+	}
+	botao:hover > popup{
+		-moz-transform: scale(1.0);
+		-webkit-transform: scale(1.0);
+		-o-transform: scale(1.0);
+		-ms-transform: scale(1.0);
+		transform: scale(1.0);
+	}
+	.agenda td {
+		padding: 12px;
+		background: #000;
+	}
+	.agenda th {
+		background: #000;
+		color: #384A38;
+	}
+	</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<div id="logo-enclosure">
+	<div id="logo">
+		<img src="tosconf.png">
+	</div>
+	<div id="data">
+	8 de Junho de 2013<br/>
+	09:00<br/>
+	Campinas - SP
+	</div>
+</div>
+
+<div id="menu">
+	<a href="#evento">Evento</a> &middot;
+	<a href="#agenda">Agenda</a> &middot;
+	<a href="#atividades">Atividades</a> &middot;
+	<a href="#inscricoes">Inscrições</a> &middot;
+	<a href="#local">Local</a> &middot;
+	<a href="#contato">Contato</a>
+</div>
+
+<span class="anchor" id="evento"></span>
+<div class="bloco">
+<h1>O Evento</h1>
+<p>A Tosconf é a desconferência anual organizada pelo Laboratório Hacker de
+Campinas (LHC). Em sua primeira edição, em 2012, atraiu desenvolvedores,
+pesquisadores de segurança da informação e figuras míticas da
+computação. Na edição de 2013, a fórmula será ajustada levemente para trazer
+um pouco mais de ecleticismo ao evento.</p>
+<center>
+	<botao><img src="tosconf-2.th.jpg"><popup><img src="tosconf-2.jpg"><small>&copy; Bruno Dilly</small></popup></botao>
+	<botao><img src="tosconf-1.th.jpg"><popup><img src="tosconf-1.jpg"><small>&copy; Bruno Dilly</small></popup></botao>
+	<botao><img src="tosconf-3.th.jpg"><popup><img src="tosconf-3.jpg"><small>&copy; Bruno Dilly</small></popup></botao>
+</center>
+</div>
+
+<span class="anchor" id="agenda"></span>
+<div class="bloco">
+<h1>Agenda</h1>
+
+Clique no nome de uma atividade para mostrar detalhes.
+
+<table width="100%" class="agenda">
+<tr><th>t<sub>0</sub></th><th colspan="2">Salão de Entrada</th></tr>
+<tr><td>09:00</td><td colspan="2">Credenciamento</td></tr>
+<tr><th>t<sub>1</sub></th><th colspan="2">Garagem</th></tr>
+<tr><td>09:30</td><td colspan="2">Abertura</td></tr>
+<tr><th>t<sub>2</sub></th><th>Ateliê</th><th>Garagem</th></tr>
+<tr><td>10:00</td><td><a href="#a3">Oficina de projetos virtualmente impossíveis</a></td><td><a href="#a6">Hackeando como um agente secreto</a></td></tr>
+<tr><td>11:00</td><td><a href="#a2"><em>Lockpicking</em> 101</a></td><td><a href="#a9">Por que minha Internet é lenta?</a></td></tr>
+<tr><th>t<sub>3</sub></th><th colspan="2">Caverna</th></tr>
+<tr><td>12:00</td><td colspan="2">Pausa para almoço</td></tr>
+<tr><th>t<sub>4</sub></th><th>Ateliê</th><th>Garagem</th></tr>
+<tr><td>13:30</td><td rowspan="2"><a href="#a4"><em>Wiretapping from the bottom up</em></a></td><td><a href="#a10">Retroprogramação</a></td></tr>
+<tr><td>14:30</td><td><a href="#a5">Cerveja: que magia é essa?</a></td></tr>
+<tr><td>15:30</td><td><a href="#a8"><em>Coding Dojo</em> com PCDuino</a></td><td><a href="#a1">Construindo <em>apps</em> para Firefox OS</a></td></tr>
+<tr><th>t<sub>5</sub></th><th colspan="2">Garagem</th></tr>
+<tr><td>16:30</td><td colspan="2"><a href="#a7">Construção de amplificadores e guitarras</a></td></tr>
+<tr><td>17:30</td><td colspan="2"><a href="#a11">Palestras relâmpago</a></td></tr>
+<tr><td>18:00</td><td colspan="2">Encerramento e convite à confraternização</td></tr>
+</table>
+
+
+</div>
+
+<span class="anchor" id="atividades"></span>
+<div class="bloco">
+<h1>Atividades</h1>
+
+<span class="anchor" id="a1"></span>
+<h2>Palestra: Construindo aplicativos para o Firefox OS</h2>
+<botao class="palestrante">Ricardo Panaggio<popup>Ricardo Panaggio desenvolve para Web há
+mais de 10 anos e atualmente é
+Representante da Mozilla. Acompanha o desenvolvimento da Mozilla e vários
+de seus projetos desde seu estágio embrionário. Já ministrou diversas
+palestras e cursos sobre Web standards, HTML 5, Javascript, bibliotecas
+Javascript e outros assuntos correlatos. Atualmente trabalha como Web
+scraping e no tempo livre desenvolve aplicações Web e móveis usando apenas
+tecnologias Web, se valendo sempre que possível de novas
+tecnologias.</popup></botao>
+<p>Essa oficina vai mostrar o caminho das pedras para que você possa
+desenvolver aplicativos para a nova plataforma da Mozilla de aplicativos
+móveis, o Firefox OS. Você verá desde como criar um stub de um aplicativo
+facilmente, passando por como usar algumas das novas Web APIs e
+ferramentas de desenvolvimento e ver até como publicar no Mozilla
+Marketplace.</p>
+<p>A oficina é para iniciantes, com o foco de mostrar como é fácil criar
+aplicativos para Firefox OS. A ideia é permitir que qualquer pessoa crie
+aplicativos para a plataforma e saiba como enviar seus aplicativos para o
+Marketplace e/ou publicar em seu próprio servidor.</p>
+
+<span class="anchor" id="a2"></span>
+<h2>Oficina: Lockpicking 101</h2>
+<botao class="palestrante">Victor Scattone<popup>Victor Scattone, formado em design gráfico
+e associado do Garoa, começou a se interessar por lockpicking após
+desconfiar que talvez pudesse ser tão fácil e útil quanto nos
+filmes.</popup></botao>
+<p><ul><li>História das fechaduras</li>
+<li>Lockpickers famosos (Filmes e Cultura popular)</li>
+<li>Os principais tipos de fechaduras no Brasil</li>
+<li>Funcionamento das fechaduras</li>
+<li>Técnicas para burlar os mecanismos de proteção</li>
+<li>Principais ferramentas</li>
+<li>Ética</li></ul></p>
+<p>Nível Básico</p>
+
+<span class="anchor" id="a3"></span>
+<h2>Oficina: Oficina de projetos virtualmente impossíveis</h2>
+<botao class="palestrante">Ricardo Keigo Andrade<popup>Desenvolvedor de software desde a
+infância.
+Graduado em Engenharia de Computação pela Unicamp (turma 00).
+Trabalha com e-commerce na Bosch.
+Empolgado com Scrum e XP.</popup></botao>
+
+<p>Estratégias de negociação, metodologias ágeis e programação na
+prática.</p>
+<p>Esta oficina é uma terapia de grupo para quem vem enfrentando
+problemas com o gerenciamento de projetos de software.</p>
+<p>Vamos fazer um estudo de caso utilizando Scrum dentro de algumas
+limitações impostas pelo contexto do projeto. Vamos aprender a superar
+as frustações e a seguir com propostas razoáveis para o cumprimento
+das metas estabelecidas.</p>
+<p>Pré-requisitos: um notebook por participante, conhecimento de alguma
+linguagem de programação.</p>
+
+<span class="anchor" id="a4"></span>
+<h2>Oficina: Wiretapping from the bottom up: soldando seu ataque de camada
+física</h2>
+<botao class="palestrante">Aylons Hazzud<popup>Aylons Hazzud é engenheiro, ciclista e
+sócio-fundador do Garoa Hacker Clube, não necessariamente nesta ordem. Gosta
+de eletrônica, RF, FPGA e de outras coisas que não entende
+direito.</popup></botao>
+<p>A oficina tem como objetivo ensinar solda eletrônica em um contexto
+prático em computação/informática. Ela consiste em soldar um grampo (tap)
+Ethernet que permite monitorar as atividades na rede sem que o computador
+interceptador possa ser percebido pelos outros computadores.</p>
+<p>A oficina não requer nenhum conhecimento prévio de solda, e poucos
+conhecimentos de rede. Cerca de 20% do tempo da oficina é dedicado a
+explicar o dispositivo e a camada física de redes Ethernet sobre cabeamento
+CAT5; enquanto o restante do tempo é dedicado às técnicas de solda em si. Ao
+final da oficina, todos os grampos montados pelos participantes são
+testados, interceptando comunicações de um computador em uma jiga de teste
+montada no começo da oficina.</p>
+<p>Os participantes que queiram soldar a própria placa precisam pagar o valor
+de R$30,00 referente ao material usado na oficina. Até 15 participantes
+podem participar, e até 3 participantes podem soldar a mesma placa, sem
+prejuízo didático.</p>
+
+<span class="anchor" id="a5"></span>
+<h2>Palestra: Cerveja, que magia é essa?</h2>
+<botao class="palestrante">Fernando Baggio<popup>Técnico em Bioquímica, Cervejeiro por
+profissão e por paixão. Em 2009 começou a se aventurar com produção de
+cerveja caseira e em 2010 abandou o Bacharelado em Química para seguir
+carreira Cervejeira.</popup></botao>
+
+<p>Muita gente acredita que para se fazer Cerveja precisa-se de super
+equipamentos gigantes e de alta complexidade. E que Cerveja é só aquele
+líquido amarelo gaseificado estupidamente gelado. A coisa não é bem assim,
+existem infinitas variedades de Cerveja, e com um pouco de vontade da para
+fazer todas elas no conforto da sua casa. Sim, podemos conseguir alforria
+das grandes produtoras de refresco de milho gelado. Uma explicação simples
+de como se é possível fazer uma boa Cerveja em casa.</p>
+
+<span class="anchor" id="a6"></span>
+<h2>Palestra: Hackeando como um agente secreto</h2>
+<botao class="palestrante">Rodrigo Chiossi<popup>Membro do LHC e responsável pelo Hacking
+the Gibson, encontro (quase) periódico do LHC de segurança da informação.
+Membro das comunidades de segurança SmashTheStack e OverTheWire, onde
+administra um dos wargames chamado Amateria. No seu tempo livre, costuma
+trabalhar para a Samsung com segurança de sistemas
+Android.</popup></botao>
+<p>Nesta palestra irei descrever o processo de análise do alvo, construção e
+execução de um vírus para Smartphones Android com o objetivo de obtenção e
+extração de informação. Durante a palestra será apresentado um tipo de
+vulnerabilidade comum em aplicativos e como fazer a análise do alvo para
+desenvolver o Vírus. Serão também apresentados pontos comuns de falha
+decorrentes do processo de desenvolvimento e como corrigi-los para
+inviabilizar o ataque. Esta palestra é baseada no desafio ocorrido durante a
+BSides London.</p>
+
+<span class="anchor" id="a7"></span>
+<h2>Palestra: Construção de Amplificadores e Guitarras</h2>
+<botao class="palestrante">Bruno Cardoso Lopes<popup>
+Bruno Cardoso Lopes é guitarrista e entusiasta da
+construção de instrumentos musicais, nos últimos 2 anos construiu uma
+guitarra através de um curso de Luthieria e uma amplificador valvulado
+vintage.</popup></botao>
+<p>A construção de instrumentos musicais é uma arte dominada por poucos.
+Guitarras de qualidade podem ser compradas com alto custo através de
+importação ou mesmo através de Luthiers nacionais, também com alto
+custo de aquisição. O mesmo vale para amplificadores valvulados de
+guitarra. Nessa palestra, o autor conta sua experiência como
+entusiasta da construção de guitarras e amplificadores, mostrando que
+mesmo longe de dominar a arte, qualquer um pode dar o primeiro passo e
+construir seu próprio instrumento.</p>
+
+<span class="anchor" id="a8"></span>
+<h2>Oficina: Coding Dojo com pcDuino</h2>
+<botao class="palestrante">Luciano Ramalho<popup>Ramalho aprendeu a programar em 1978
+portando um jogo da HP-25 para a
+TI-58. Trabalha com Python desde 1998, mas também curte JavaScript,
+Ruby, Processing e C++ (no ambiente do Arduino). Está empolgado porque
+os mini PCs (Raspberry Pi, pcDuino, BeagleBone etc.) permitem fazer
+hardware hacking com qualquer linguagem, até com shell scripts. É
+sócio-fundador do Garoa Hacker Clube e professor de computação para
+iniciantes e profissionais na escola virtual Oficinas
+Turing.</popup></botao>
+<p>A proposta é realizar um Coding Dojo, atividade acessível para
+principiantes em programação, com a participação ativa de vários
+voluntários entre os presentes. A graça é que o software vai ser
+testado em um pcDuino conectado a um circuito num breadboard, e isso
+exige uma adaptação da metodologia de testes, que é parte essencial do
+Coding Dojo. A variante deste Coding Dojo com Arduino foi realizada
+com sucesso na Virada Hacker do Garoa Hacker Clube, no FISL 2012, no
+escritório da Mozilla em San Francisco e em diversas faculdades. Para
+saber mais sobre Coding Dojo e Arduino, veja <a
+href="http://turing.com.br/wiki/index.php?title=Dojo_com_Arduino">esta
+página</a>.</p>
+
+<span class="anchor" id="a9"></span>
+<h2>Palestra: Por que minha internet é lenta?</h2>
+<botao class="palestrante">Thiago Ayub<popup>Thiago Ayub é Chief Technology Officer da
+UPX.com.br e professor de biologia por formação. Linuxer convicto, tem investigado
+a ecologia da internet desde 1994. Exerceu atividades como tradução do
+Ubuntu, consultoria em Tecnologia e Educação para professores e já foi
+administrador geral da extinta BRASnet, a maior rede brasileira de
+IRC.</popup></botao>
+<p>Junto aos planos de saúde e operadoras de cartão de crédito,
+os provedores de acesso à internet tem seu local de destaque no poço
+de ódio dos consumidores. Seja por queixas nas redes sociais ou até
+nos tribunais, o consumidor deixa claro que sente que leva menos do
+que paga pelo serviço. Mas já se perguntou o porquê da sua internet
+ser lenta? Conheceremos nesta palesta dos desafios do provimento da
+banda larga no Brasil e investigaremos o funcionamento da internet e
+seus protocolos de roteamento para entender o problema, o traffic
+shaping e o uso de caches.</p>
+
+<span class="anchor" id="a10"></span>
+<h2>Palestra: Retroprogramação - Estudando a programação por meio da
+engenharia reversa de games clássicos</h2>
+<botao class="palestrante">Felipe "Juca" Sanches<popup>
+Ativista e Desenvolvolvedor de software livre. Desenvolvedor do projeto Inkscape desde
+2007. Co-autor do projeto GNU LibreDWG. Sócio-fundador e diretor de desenvolvmento da Metamáquina, empresa
+nacional de impressão 3D com softwares e hardwares livres. Co-fundador do Garoa Hacker
+Clube.</popup>
+</botao>
+<p>Nessa palestra apresentarei detalhes internos de games clássicos como
+Pinball Fantasies, Another World e Prince of Persia.  Será dada uma visão
+geral a respeito da máquina virtual e do bytecode do game Another World. 
+Serão analisados trechos da <a
+href="https://github.com/fabiensanglard/Another-World-Bytecode-Interpreter">reimplementação
+livre desta máquina virtual</a> e demonstrados alguns hacks que envolven
+intervençoes no game por meio de patches na máquina virtual.
+
+Abordagem similar será dada para a explicação de detalhes técnicos internos
+do game Pinball Fantasies (versão MSDOS) junto com demonstrações de hacks
+por meio de patches no emulador DosBox.
+
+Sobre Prince of Persia, proponho uma conversa sobre como compilar o código
+fonte de Apple2 recentemente publicado pelo autor, Jordan Mechner.</p>
+
+<span class="anchor" id="a11"></span>
+<h2>Palestras de 5 minutos</h2>
+<botao class="palestrante">Você?<popup>Na Tosconf soviética, quem palestra é
+<b>VOCÊ</b>.</popup></botao>
+<p>Além das atividades acima, também abriremos espaço para palestras de 5
+minutos. É a oportunidade ideal para quem quer falar sobre algum assunto mas
+acredita que os 45 minutos de uma palestra convencional é tempo demais.
+Mostre um projeto, uma descoberta, conte piadas. Tudo é válido, e a
+inscrição deve ser feita no dia do evento.</p>
+<p>Dada a natureza ágil das palestras, recomenda-se mandar os slides (em formato
+PDF) para a organização do evento até meia hora antes do início da sessão.
+Isso evita a troca de computador no projetor e gasto desnecessário de
+tempo.</p>
+</div>
+
+
+<span class="anchor" id="inscricoes"></span>
+<div class="bloco">
+<h1>Inscrições</h1>
+
+<a
+href="https://docs.google.com/forms/d/1nqkODafV5zKT2pOG6czbOKWjzk-jvzq0T4izv4GjJZU/viewform">Faça
+sua inscrição aqui</a>.
+</div>
+
+<span class="anchor" id="local"></span>
+<div class="bloco">
+<h1>Local</h1>
+<iframe style="margin: 0" width="100%" height="320" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com.br/maps?ie=UTF8&amp;q=Av. Orozimbo Maia, 1264 - Campinas - SP&amp;fb=1&amp;gl=br&amp;output=embed"></iframe>
+
+<center>
+	<p><botao>Ver foto da fachada<popup><img src="http://lhc.net.br/landing-page/assets/img/fachada.jpg"></popup></botao></p>
+</center>
+
+</div>
+
+<span class="anchor"></span>
+<div class="bloco patrocinadores">
+<table width="100%">
+<tr>
+	<td><h1>Organização</h1></td>
+	<td><h1>Apoio</h1></td>
+</tr>
+<tr>
+	<td><a href="http://lhc.net.br"><img src="lhc.png"></a></td>
+	<td><a href="http://www.novatec.com.br"><img src="novatec.png"></a></td>
+</tr>
+<tr>
+	<td colspan="2"></td>
+</tr>
+<tr>
+	<td colspan="2"><a href="https://www.noisebridge.net/wiki/Passport"><img src="passport.png" border="0"></a></td>
+</tr>
+</table>
+</div>
+
+<span class="anchor" id="contato"></span>
+<div class="bloco">
+<h1>Contato</h1>
+A organização do evento pode ser contatada através do email <a
+href="mailto:tosconf@lhc.net.br">tosconf@lhc.net.br</a>.
+</div>
+
+</body>
+</html>
