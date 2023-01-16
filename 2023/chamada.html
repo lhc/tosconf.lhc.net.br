@@ -1,0 +1,463 @@
+<html>
+<head>
+	<title>Tosconf[2]</title>
+	<style>
+	body {
+		background: #0C0C0C;
+		font-family: inconsolata, courier new;
+		color: #4e9a06;
+	}
+	#logo-enclosure {
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 172px;
+		background: url('degrad.png') repeat-x;
+		background-attachment: fixed;
+		z-index: 1000;
+	}
+	.anchor {
+		display: block;
+		height: 172px;
+		margin-top: -172px;
+		visibility: hidden;
+	}
+	#logo {
+		margin-top: 24px;
+		text-align: center;
+	}
+	#data {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+		text-align: right;
+		font-size: 150%;
+	}
+	#menu {
+		padding: 12px;
+		margin-top: 184px;
+		margin-bottom: 48px;
+		text-align: center;
+		font-size: 150%;
+	}
+	#menu a {
+		color: #490;
+		text-decoration: none;
+		border-bottom: 2px dashed #490;
+	}
+	.bloco {
+		margin-bottom: 48px;
+		border: 1px solid green;
+		padding: 24px;
+		background: #081A08;
+	}
+	@media screen and (min-width: 1200px) {
+		.bloco {
+			margin-left: 25%;
+			margin-right: 25%;
+		}
+	}
+	@media screen and (min-width: 1100px) and (max-width: 1200px) {
+		.bloco {
+			margin-left: 15%;
+			margin-right: 15%;
+		}
+	}
+	@media screen and (min-width: 900px) and (max-width: 1100px) {
+		.bloco {
+			margin-left: 5%;
+			margin-right: 5%;
+		}
+	}
+	.bloco a {
+		color: #490;
+		text-decoration: none;
+		border-bottom: 1px dotted #490;
+	}
+	.patrocinadores a {
+		border-bottom: none;
+	}
+	.bloco h1, p {
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+	.patrocinadores tr {
+		text-align: center;
+	}
+	botao {
+		position:relative;
+		display: inline-block;
+		padding: 4px 10px 4px;
+		margin:12px;
+		font-size: 13px;
+		line-height: 18px;
+		text-align: center;
+		border: 1px solid #ccc;
+		border-bottom-color: #bbb;
+		border-radius: 4px;
+		-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, -255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+		-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, -0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+		cursor: pointer;
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+		color: white;
+		background-color: #5bb75b;
+		background-image: -moz-linear-gradient(top, #62c462, #51a351);
+		background-image: -ms-linear-gradient(top, #62c462, #51a351);
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+		background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+		background-image: -o-linear-gradient(top, #62c462, #51a351);
+		background-image: linear-gradient(top, #62c462, #51a351);
+		background-repeat: repeat-x;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#62c462', endColorstr='#51a351', GradientType=0);
+		border-color: #51a351 #51a351 #387038;
+		border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+		filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	}
+	.palestrante {
+		float: right;
+	}
+	botao:hover {
+		background-color: #51a351;
+		text-decoration: none;
+		background-position: 0 -15px;
+		-webkit-transition: background-position 0.1s linear;
+		-moz-transition: background-position 0.1s linear;
+		-ms-transition: background-position 0.1s linear;
+		-o-transition: background-position 0.1s linear;
+		transition: background-position 0.1s linear;
+	}
+	botao > popup{
+		-moz-transition: all .2s ease-in-out; 
+		-webkit-transition: all .2s ease-in-out; 
+		-o-transition: all .2s ease-in-out; 
+		-ms-transition: all .2s ease-in-out; 
+		transition: all .2s ease-in-out; 
+		-moz-transform: scale(0);
+		-webkit-transform: scale(0);
+		-o-transform: scale(0);
+		-ms-transform: scale(0);
+		transform: scale(0);
+		position:absolute;
+		background: #0c0c0c;
+		color: #9a9a9a;
+		border-radius: 5px;
+		padding:10px;
+		width: 400px;
+		bottom:120%;
+		left:0;
+		z-index: 2000;
+		border: 1px solid #4e9a06;
+		box-shadow: 0 0 42px black;
+	}
+
+	botao > popup:before,popup:after {
+		content: ".";
+		position: absolute;
+		color:transparent;
+		top:100%;
+		width: 0;
+		height: 0;
+		left:4px;
+		border-left: 11px solid transparent;
+		border-right: 11px solid transparent;
+		border-top: 11px solid #4e9a06;
+	}
+
+	botao > popup:after {
+		left:5px;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-top: 10px solid #0c0c0c;
+	}
+	botao:hover > popup{
+		-moz-transform: scale(1.0);
+		-webkit-transform: scale(1.0);
+		-o-transform: scale(1.0);
+		-ms-transform: scale(1.0);
+		transform: scale(1.0);
+	}
+	.agenda td {
+		padding: 12px;
+		background: #000;
+	}
+	.agenda th {
+		background: #000;
+		color: #384A38;
+	}
+	</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<div id="logo-enclosure">
+	<div id="logo">
+		<img src="tosconf.png">
+	</div>
+	<div id="data">
+	31 de Maio de 2014<br/>
+	09:00<br/>
+	Campinas - SP
+	</div>
+</div>
+
+<div id="menu">
+	<a href="#evento">Evento</a> &middot;
+	<a href="#agenda">Agenda</a> &middot;
+	<a href="#atividades">Atividades</a> &middot;
+	<a href="#inscricoes">Inscrições</a> &middot;
+	<a href="#local">Local</a> &middot;
+	<a href="#contato">Contato</a>
+</div>
+
+<span class="anchor" id="evento"></span>
+<div class="bloco">
+<h1>O Evento</h1>
+<p>A Tosconf é a desconferência anual organizada pelo Laboratório Hacker de
+Campinas (LHC).  Em sua primeira edição, em <a href="/2012">2012</a>, atraiu desenvolvedores,
+pesquisadores de segurança da informação e figuras míticas da computação. 
+Na edição de <a href="/2013">2013</a>, a fórmula foi ajustada levemente para trazer um pouco
+mais de ecleticismo ao evento -- com o sucesso da conferência passada,
+uma fórmula similar será usada este ano.</p>
+<center>
+	<p>
+		<botao><img src="tosconf-4.th.jpg"></botao>
+		<botao><img src="tosconf-5.th.jpg"></botao>
+	</p>
+	<p>
+		<botao><img src="tosconf-6.th.jpg"></botao>
+		<botao><img src="tosconf-7.th.jpg"></botao>
+	</p>
+
+	<p>
+		<botao><img src="tosconf-2.th.jpg"><popup><img src="tosconf-2.jpg"><small>&copy; Bruno Dilly</small></popup></botao>
+		<botao><img src="tosconf-1.th.jpg"><popup><img src="tosconf-1.jpg"><small>&copy; Bruno Dilly</small></popup></botao>
+		<botao><img src="tosconf-3.th.jpg"><popup><img src="tosconf-3.jpg"><small>&copy; Bruno Dilly</small></popup></botao>
+	</p>
+</center>
+</div>
+
+<span class="anchor" id="agenda"></span>
+<div class="bloco">
+<h1>Agenda</h1>
+
+
+<p>Clique no nome de uma atividade para mostrar detalhes.</p>
+
+<table width="100%" class="agenda">
+<tr><th>t<sub>0</sub></th><th colspan="2">Salão de Entrada</th></tr>
+<tr><td>09:00</td><td colspan="2">Credenciamento</td></tr>
+<tr><th>t<sub>1</sub></th><th colspan="2">Fundos</th></tr>
+<tr><td>09:30</td><td colspan="2">Abertura</td></tr>
+<tr><th>t<sub>2</sub></th><th>Sala Coringa</th><th>Fundos</th></tr>
+<tr><td>10:00</td><td rowspan="2"><a href="#a1">Módulos de Linux: drivers, udev, etc</a></td><td><a href="#a4">Go(lang) para web(sockets)</a></td></tr>
+<tr><td>11:00</td><td><a href="#a10">Jogos de Tabuleiro</a></td></tr>
+<tr><th>t<sub>3</sub></th><th colspan="2">Cozinha</th></tr>
+<tr><td>12:00</td><td colspan="2">Pausa para almoço</td></tr>
+<tr><th>t<sub>4</sub></th><th>Sala Coringa</th><th>Fundos</th></tr>
+<tr><td>13:30</td><td rowspan="2"><a href="#a3">CD40106 e seus usos sonoro-musicais</a></td><td><a href="#a6">RTL-SDR e Controle de Tráfego Aéreo</a></td></tr>
+<tr><td>14:30</td><td><a href="#a8">Retrocomputação mecânica com régua de cálculo</a></td></tr>
+<tr><td>15:30</td><td>void *atividade = NULL;</td><td><a href="#a7">White Hat Hacker</a></td></tr>
+<tr><th>t<sub>5</sub></th><th>Cercado</th><th>Fundos</th></tr>
+<tr><td>16:30</td><td><a href="#a9"><i>Old school hacking: </i> Forjando um Machado</a></td><td><a href="#a2">Hacktivismo e Cidadania Online</a></td></tr>
+<tr><th>t<sub>6</sub></th><th colspan="2">Fundos</th></tr>
+<tr><td>17:30</td><td colspan="2"><a href="#a11">Palestras relâmpago &amp; Jeopardy!</a></td></tr>
+<tr><td>18:00</td><td colspan="2">Encerramento e convite à confraternização</td></tr>
+</table>
+
+
+</div>
+<span class="anchor" id="atividades"></span>
+<div class="bloco">
+<h1>Atividades</h1>
+
+<span class="anchor" id="a1"></span>
+<h2>Oficina: Módulos de Linux: drivers, udev, etc</h2>
+<botao class="palestrante">Diego Ramos Ruggeri<popup>Tecnólogo em Informática pela Unicamp (2011)
+Desenvolvedor Android/Java no Instituto Eldorado desde 2011.
+Trabalhou com desenvolvimento em diversas tecnologias (asp, php, mysql, vb) desde 2007 na Atento,
+onde criava sistemas internos para área de planejamento operacional.
+Atualmente é aluno especial de pós graduação na Unicamp e trabalha com otimização de tempo de bateria em dispositívos Android.
+</popup></botao>
+<p>Linux permite escrever módulos de maneira bastante
+simples e elegante, usando técnicas de orientação a objetos mesmo sendo
+todo escrito em C. Como a criação de módulos e drives costuma ser feita
+por fabricantes de hardware, muitos programadores não tem familiaridade
+com esse assunto ainda que tenham curiosidade de aprender.
+Nessa apresentação serão mostrados os fundamentos sobre módulos, as
+ferramentas usadas para criá-los e alguns exemplos práticos.</p>
+
+<span class="anchor" id="a2"></span>
+<h2>Palestra: Hacktivismo e Cidadania Online</h2>
+<botao class="palestrante">Anchises Moraes<popup> Anchises Moraes,
+profissional work-aholic com mais de 15 anos de experiência na coordenação e
+implantação de projetos de Segurança da Informação em diversas empresas de
+médio e grande porte.  Formado em Ciência da Computação pelo IME-USP e
+pós-graduado em Marketing pela ESPM, também foi presidente do Capítulo
+Brasil da ISSA de 2008 a 2009, é Presidente do capítulo brasileiro da Cloud
+Security Alliance (CSA) e é um dos fundadores do Garoa Hacker Clube, o
+primeiro Hackerspace brasileiro.  É um dos organizadores do evento Security
+BSides São Paulo.  Trabalha atualmente como Analista de Inteligência e
+Ameaças da RSA Security.</popup></botao>
+<p>O que fazer quando a Internet, responsável por tantos benefícios para a
+população e para o mercado em geral, é ameaçada por governos, grupos
+políticos e até mesmo terroristas?  Diversos incidentes desde 2010 mostraram
+a importância da Internet como forma de mobilização política, além da
+fragilidade do mundo online frente a conflitos regionais e globais, que
+podem ser facilmente explorados por grupos terroristas, governos, agências
+de inteligência, militares e até mesmo pelo cidadão comum.  Além disso,
+iniciativas como Wikileaks e a ação dos grupos Anonymous e LulzSec elevaram
+o Hacktivismo como uma ameaça global, afetando empresas e governos de uma
+forma sem precedenes na curta história da Internet.  Nesta apresentação
+vamos discutir a história dos movimentos hacktivistas, sua evolução através
+das redes sociais e vamos explorar o turbilhão de eventos relacionados ao
+Hacktivismo em todo o mundo.</p>
+
+<span class="anchor" id="a4"></span> <h2>Palestra: Go(lang) para
+web(sockets)</h2> <botao class="palestrante">Jonas Gastal<popup> Jonas
+Gastal trabalha como desenvolvedor a 8 anos e contribui para software livre
+a mais de 5 anos tanto profissionalment como por hobby, tem experiencia com
+diversas linguagens e tecnologias como C, C++, Java, Python, Go, Django,
+Android, Qt, EFL, sockets, pthreads.</popup></botao> <p>A palestra tem como
+objetivo demonstrar os elementos basicos para construção de um programa web
+na linguagem Go.  A palestra mostrará exemplos basicos de como rotear
+pedidos HTTP, como trabalhar com formulários, cookies, sessões e templates. 
+Após isso será discutido brevemente o que são websockets, quais as suas
+vantagens e por que Go é particularmente adequado para uso com websockets. 
+Além disso serão mostrados 2 exemplos de programas em Go com websockets:
+<ul><li>um mural que atualiza quando qualquer pessoa posta uma mensagem (sem pooling)</li><li>um servidor de chat</li></ul>
+ Conhecimento previo de Go não é  nescessário mas auxília no entendimento.</p>
+
+<span class="anchor" id="a3"></span> <h2>Oficina: CD40106 e seus usos
+sonoro-musicais</h2> <botao class="palestrante">Thiago Salas</botao> <p>Esta
+oficina tem como objetivo apresentar a luteria experimental como um dos
+novos caminhos para criação sonoro-músical, observando aspectos singulares
+de um novo modo de produção que considera o desenvolvimneto de instrumetos
+sonoros como parte fundamental da própria composição.  Serão desenvolvidas
+algumas habilidades técnicas e conceituais referentes ao uso sonoro de
+componentes eletrônicos analógicos, possibilitando que a maniipulação e
+associação destes componentes gere dispositivos com funções de sintetizar
+sonoridades diversas.  Serão produzidos nesta alguns geradores de som
+utilizando-se o circuito integrado (CI) CD40106 e outros componentes
+(capacitores, resistores, diodos) associados a este.  </p> <p> A intenção
+principa desta oficina é aproximar o público de um fazer musical atual, bem
+como de possibilitar a compreensão de aspectos que envolvem as relações
+entre tecnologia e composição, com ênfase em processos de elaboração dos
+instrumentos sonoro-musicais.</p>
+
+<span class="anchor" id="a6"></span> <h2>Palestra: Recebendo sinais de
+controle de tráfego aéreo com RTL-SDR e Raspberry Pi</h2>
+<botao class="palestrante">Luiz Antonio Izidoro<popup>Sou estudante do
+segundo ano de Economia na Unicamp, o que não me impede de ser um computeiro
+com inspirações hackers. Já fiz um curso de técnico em informática na ETEc
+Polivalente de Americana, mas o fundamental que sei hoje foi aprendendo
+sozinho.
+Gosto de brincar com RaspberryPi, sistemas Unix e Unix-like, além de me
+interessar por criptomoedas, Economia :P, geopolítica e aviação.</popup></botao>
+<p>Gostaria de falar um pouco sobre como usar o RaspberryPi com RTL-SDR, com
+enfoque em ADSB.</p>
+<p>RTL-SDR é um termo que permite que descreve o uso de receptores de rádio
+baratos para diversas finalidades, como ouvir frequências de voz analógicas
+(FM, AM, HAM, Controle de Tráfego aéreo, etc), rastrear aviões e navios, e
+obter imagens de radares meteorológicos, entre outros.
+ADSB é uma tecnologia para rastrear aeronaves, que transmite dados técnicos
+(fabricante, cia área, registro nas autoridades civis), velocidade, posição,
+e número do voo.</p>
+<p>Na palestra quero mostrar como o RaspberryPi pode ser útil em mostrar o
+tráfego aéreo local de maneira prática, ao renderizar todos os dados em um
+mapa, contendo os dados das aeronaves próximas.</p>
+
+<span class="anchor" id="a7"></span> <h2>Palestra: White Hat Hacker</h2>
+<botao class="palestrante">João Lucas Melo Brasio</botao>
+<p style="margin-bottom: 5em">Palestra aguardando resumo.</p>
+
+<span class="anchor" id="a8"></span> <h2>Palestra: Retrocomputação mecânica
+com régua de cálculo</h2> <botao class="palestrante">Ricardo
+Bittencourt</botao> <p style="margin-bottom: 5em">Palestra aguardando
+resumo.</p>
+
+<span class="anchor" id="a9"></span> <h2>Demonstração: <i>Old school
+hacking: </i>Forjando um Machado</h2> <botao class="palestrante">Frederico
+A.  F.  Pereira</botao> <p>O significado original do termo <i>hacker</i> é
+"pessoa que faz móveis com um machado".  Continuando a tradição de
+faça-você-mesmo, será demonstrada a fabricação de um machado a partir da
+cabeça de um martelo.</p> <p>A demonstração será feita nos fundos do LHC em
+um cercado, para manter os espectadores a uma distância segura por envolver
+materiais em altas temperaturas.</p>
+
+<span class="anchor" id="a10"></span> <h2>Palestra: Jogos de Tabuleiro</h2>
+<botao class="palestrante">John Ibarzabal</botao>
+<p style="margin-bottom: 5em">Palestra aguardando resumo.</p>
+
+<span class="anchor" id="a11"></span>
+<h2>Palestras de 5 minutos</h2>
+<botao class="palestrante">Você?<popup>Na Tosconf soviética, quem palestra é
+<b>VOCÊ</b>.</popup></botao>
+<p>Além das atividades acima, também abriremos espaço para palestras de 5
+minutos. É a oportunidade ideal para quem quer falar sobre algum assunto mas
+acredita que os 45 minutos de uma palestra convencional é tempo demais.
+Mostre um projeto, uma descoberta, conte piadas. Tudo é válido, e a
+inscrição deve ser feita no dia do evento.</p>
+<p>Dada a natureza ágil das palestras, recomenda-se mandar os slides (em
+formato
+PDF) para a organização do evento até meia hora antes do início da sessão.
+Isso evita a troca de computador no projetor e gasto desnecessário de
+tempo.</p>
+
+</div>
+
+<span class="anchor" id="inscricoes"></span>
+<div class="bloco">
+<h1>Inscrições</h1>
+
+<div style="width:100%; text-align:left;" ><iframe
+src="https://www.eventbrite.com/tickets-external?eid=11646714637&ref=etckt"
+frameborder="0" height="293" width="100%" vspace="0" hspace="0"
+marginheight="5" marginwidth="5" scrolling="auto"
+allowtransparency="true"></iframe><div style="font-family:Helvetica, Arial;
+font-size:10px; padding:5px 0 5px; margin:2px; width:100%; text-align:left;"></div></div>
+</div>
+
+<span class="anchor" id="local"></span>
+<div class="bloco">
+<h1>Local</h1>
+
+<iframe style="margin: 0" width="100%" height="320" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+src="//maps.google.com.br/maps?ie=UTF8&amp;q=Rua Dr. Salles de Oliveira, 1800 - Campinas - SP&amp;fb=1&amp;gl=br&amp;output=embed"></iframe>
+
+<center>
+	<p><botao>Ver foto da fachada<popup><img src="fachada.jpg"></popup></botao></p>
+</center>
+
+</div>
+
+<span class="anchor"></span>
+<div class="bloco patrocinadores">
+<table width="100%">
+<tr>
+	<td><h1>Organização</h1></td>
+	<td><h1>Apoio</h1></td>
+</tr>
+<tr>
+	<td><a href="http://lhc.net.br"><img src="lhc.png"></a></td>
+	<td><a href="http://www.novatec.com.br"><img src="novatec.png"></a></td>
+</tr>
+<tr>
+	<td colspan="2"></td>
+</tr>
+<tr>
+	<td colspan="2"><a href="https://www.noisebridge.net/wiki/Passport"><img src="passport.png" border="0"></a></td>
+</tr>
+</table>
+</div>
+
+<span class="anchor" id="contato"></span>
+<div class="bloco">
+<h1>Contato</h1>
+A organização do evento pode ser contatada através do email <a
+href="mailto:tosconf@lhc.net.br">tosconf@lhc.net.br</a>.
+</div>
+
+</body>
+</html>
