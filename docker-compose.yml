@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+    client:
+        image: nginx
+        ports:
+            - 8042:80
+        volumes:
+            - ./2023:/usr/share/nginx/html
+        environment:
+            - VIRTUAL_HOST=2023.tosconf.lhc.net.br
+            - VIRTUAL_PORT=8042
+            - LETSENCRYPT_HOST=2023.tosconf.lhc.net.br
+            - LETSENCRYPT_EMAIL=contato@lhc.net.br
