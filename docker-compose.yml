@@ -1,14 +1,50 @@
 version: "3"
 
 services:
-    client:
+    tosconf2012:
         image: nginx
         ports:
-            - 8042:80
+            - 8012:80
+        volumes:
+            - ./2012:/usr/share/nginx/html
+        environment:
+            - VIRTUAL_HOST=2012.tosconf.lhc.net.br
+            - LETSENCRYPT_HOST=2012.tosconf.lhc.net.br
+            - LETSENCRYPT_EMAIL=contato@lhc.net.br
+        network_mode: bridge
+
+    tosconf2013:
+        image: nginx
+        ports:
+            - 8013:80
+        volumes:
+            - ./2013:/usr/share/nginx/html
+        environment:
+            - VIRTUAL_HOST=2013.tosconf.lhc.net.br
+            - LETSENCRYPT_HOST=2013.tosconf.lhc.net.br
+            - LETSENCRYPT_EMAIL=contato@lhc.net.br
+        network_mode: bridge
+
+    tosconf2014:
+        image: nginx
+        ports:
+            - 8014:80
+        volumes:
+            - ./2014:/usr/share/nginx/html
+        environment:
+            - VIRTUAL_HOST=2014.tosconf.lhc.net.br
+            - LETSENCRYPT_HOST=2014.tosconf.lhc.net.br
+            - LETSENCRYPT_EMAIL=contato@lhc.net.br
+        network_mode: bridge
+
+    tosconf2023:
+        image: nginx
+        ports:
+            - 8023:80
         volumes:
             - ./2023:/usr/share/nginx/html
         environment:
-            - VIRTUAL_HOST=2023.tosconf.lhc.net.br
-            - VIRTUAL_PORT=8042
-            - LETSENCRYPT_HOST=2023.tosconf.lhc.net.br
+            - VIRTUAL_HOST=2023.tosconf.lhc.net.br,tosconf.lhc.net.br
+            - LETSENCRYPT_HOST=2023.tosconf.lhc.net.br,tosconf.lhc.net.br
             - LETSENCRYPT_EMAIL=contato@lhc.net.br
+        network_mode: bridge
